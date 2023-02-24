@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsSessionLoginTask</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if logged_in? %>
+      <ul>
+        <li><%= link_to "タスク一覧", tasks_path, id: "tasks-index" %></li>
+        <li><%= link_to "タスクを登録する", new_task_path, id: "new-task" %></li>
+        <li><%= link_to "アカウント", user_path(current_user.id), id: "my-account" %></li>
+        <li><%= link_to "ログアウト", session_path(current_user.id), id: "sign-out", method: :delete %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li id="sign-up"><%= link_to "アカウント登録", new_user_path %></li>
+        <li id="sign-in"><%= link_to "ログイン", new_session_path %></li>
+      </ul>
+    <% end %>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

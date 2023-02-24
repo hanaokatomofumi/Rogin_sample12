@@ -1,0 +1,9 @@
+<h1><%= t('.title') %></h1>
+<p>名前: <%= @user.name %>
+<p>メールアドレス: <%= @user.email %>
+
+<div class="link-footer">
+  <%= link_to "編集", edit_user_path, id: "edit-user" %>
+  |
+  <%= link_to t('common.destroy'), @user, id: "destroy-user", method: :delete, data: { confirm: t('common.confirm_destroy') } %>
+</div>
